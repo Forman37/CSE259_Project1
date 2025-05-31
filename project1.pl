@@ -1,2 +1,2 @@
 hello :-
-	write ('Hello World'), nl.
+	write('Hello World'), nl.
