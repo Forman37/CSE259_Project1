@@ -1,6 +1,21 @@
 asu(LeftRightMargin, BottomTopMargin, SpaceBetweenCharacters, FontSize) :-
+
+    /*
+        To get the HorizontalSize (which is the size from 1 boarder to the other) we do:
+        
+        - 2 * LeftRightMargin (left and right padding)
+        - 2 * SpaceBetweenCharacters (spaces between A, S, and U)
+        - FontSize * 3 * 3:
+            - 3 letters (A, S, U)
+            - Each letter has 3 sections across its width
+
+        So the formula is:
+        (LeftRightMargin * 2) + (SpaceBetweenCharacters * 2) + (FontSize * 3 * 3)
+    */
+
 	HorizontalSize is (LeftRightMargin * 2) + (SpaceBetweenCharacters * 2) + (FontSize * 3 * 3),
-    write('Horizontal Size : '), write(HorizontalSize), nl,
+
+    % Top bounding box and margin
     bounding_box_topBot(0, HorizontalSize + 2), nl,
     top_bottom_margins(0, BottomTopMargin, HorizontalSize),
 
@@ -16,6 +31,7 @@ asu(LeftRightMargin, BottomTopMargin, SpaceBetweenCharacters, FontSize) :-
     fourth_block(0, LeftRightMargin, SpaceBetweenCharacters, FontSize),
     fifth_block(0, LeftRightMargin, SpaceBetweenCharacters, FontSize),
 
+    % Bottom part margin and bounding box
     top_bottom_margins(0, BottomTopMargin, HorizontalSize),
     bounding_box_topBot(0, HorizontalSize + 2).
     
